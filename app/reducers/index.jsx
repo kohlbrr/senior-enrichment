@@ -1,5 +1,13 @@
 import { combineReducers } from 'redux'
+import campusReducer from './campusReducer';
+import studentReducer from './studentReducer';
 
+export default combineReducers({
+  campus: campusReducer,
+  student: studentReducer
+});
+
+/*
 const initialState = {}
 
 const rootReducer = function(state = initialState, action) {
@@ -9,3 +17,4 @@ const rootReducer = function(state = initialState, action) {
 };
 
 export default rootReducer
+*/
