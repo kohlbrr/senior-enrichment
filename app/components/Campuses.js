@@ -7,7 +7,6 @@ export default (props) => {
   return (
     <div>
       You are in Campuses
-      <section>
         {
           props.campuses.map(campus => (
             <div key={campus.id}>
@@ -15,7 +14,6 @@ export default (props) => {
             </div>
           ))
         }
-      </section>
     </div>
   );
 }

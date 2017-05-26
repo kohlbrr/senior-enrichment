@@ -13,7 +13,7 @@ import StudentsContainer from './containers/studentsContainer';
 import CampusContainer from './containers/campusContainer';
 import StudentContainer from './containers/studentContainer';
 
-import { receiveCampuses, getCampusById } from './action-creators/campus';
+import { receiveCampuses, getCampusById, getCampusStudents } from './action-creators/campus';
 import { receiveStudents, getStudentById } from './action-creators/student';
 
 const onAppEnter = () => {
@@ -32,7 +32,8 @@ const onAppEnter = () => {
 
 const onCampusEnter = (nextRouterState) => {
   const selectedCampus = nextRouterState.params.id;
-  return store.dispatch(getCampusById(selectedCampus));
+  store.dispatch(getCampusById(selectedCampus));
+  store.dispatch(getCampusStudents(selectedCampus));
 };
 
 const onStudentEnter = (nextRouterState) => {

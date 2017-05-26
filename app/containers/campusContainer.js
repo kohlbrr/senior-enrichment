@@ -6,7 +6,8 @@ import Campus from '../components/Campus';
 
 const mapStateToProps = state => {
   return {
-    selectedCampus: state.campus.selectedCampus
+    selectedCampus: state.campus.selectedCampus,
+    selectedCampusStudents: state.campus.selectedCampusStudents
   };
 };
 

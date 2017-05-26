@@ -2,6 +2,7 @@
 
 const initialCampusState = {
   selectedCampus: {},
+  selectedCampusStudents: [],
   campuses: []
 };
 
@@ -16,6 +17,7 @@ export default (state = initialCampusState, action) => {
       newState.selectedCampus = action.campus;
       break;
     case 'RECEIVE_CAMPUS_STUDENTS':
+      newState.selectedCampusStudents = action.students;
       break;
     case 'CREATE_CAMPUS':
       break;
