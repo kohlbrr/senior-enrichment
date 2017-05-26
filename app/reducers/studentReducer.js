@@ -15,11 +15,12 @@ export default (state = initialStudentState, action) => {
     case 'RECEIVE_STUDENT':
       newState.selectedStudent = action.student;
       break;
-    case 'CREATE_STUDENT':
+    case 'ADD_STUDENT':
       break;
-    case 'UPDATE_STUDENT':
-      break;
-    case 'DELETE_STUDENT':
+    case 'REMOVE_STUDENT':
+      newState.students = state.students.filter(student => {
+        return student.id !== action.studentId
+      })
       break;
     default:
       return state;

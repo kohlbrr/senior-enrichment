@@ -36,6 +36,15 @@ const onCampusEnter = (nextRouterState) => {
   store.dispatch(getCampusStudents(selectedCampus));
 };
 
+const onStudentsEnter = (nextRouterState) => {
+  axios.get('/api/students')
+  .then(res => res.data)
+  .then(students => {
+    store.dispatch(receiveStudents());
+  })
+  .catch(console.error);
+};
+
 const onStudentEnter = (nextRouterState) => {
   const selectedStudent = nextRouterState.params.id;
   store.dispatch(getStudentById(selectedStudent));

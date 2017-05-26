@@ -144,6 +144,7 @@ api.put('/student/:id', (req, res, next) => { // Update student
 })
 
 api.delete('/student/:id', (req, res, next) => { // Delete student
+  console.log(req.params.id)
   Student.destroy({
     where: {
       id: req.params.id

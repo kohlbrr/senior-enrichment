@@ -4,20 +4,46 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default (props) => {
-  console.log(props)
   return (
     <div>
       <div>
         { props.selectedStudent.name }
       </div>
       <div>
+        { props.selectedStudent.email }
+      </div>
+      <div>
         <form onSubmit={props.handleSubmit}>
           <fieldset>
-            <legend>Change Campus</legend>
+            <legend>Edit User</legend>
+             <div>
+              <h4>New Name</h4>
+            </div>
+            <div>
+              <input 
+                name='name'
+                type='text'
+                onChange={props.handleNameChange}
+              />
+            </div>
+              <h4>New Email</h4>
+            <div>
+            <div>
+              <input
+                name='email'
+                type='text'
+                onChange={props.handleEmailChange}
+              />
+            </div>
+            </div>
+            <div>
+              <h4>Campus</h4>
+            </div>
             <div>
               <select
                 name='campus'
-                onChange={props.handleChange}
+                selected='selected'
+                onChange={props.handleCampusChange}
                 required
               >
                 {
@@ -29,10 +55,15 @@ export default (props) => {
             </div>
             <div>
               <div>
-                <button type='submit'>Change Campus</button>
+                <button type='submit'>Submit</button>
               </div>
             </div>
           </fieldset>
+        </form>
+        <form onSubmit={props.handleDelete}>
+          <div>
+            <button type='submit'>Delete {props.selectedStudent.name}</button>
+          </div>
         </form>
       </div>
     </div>

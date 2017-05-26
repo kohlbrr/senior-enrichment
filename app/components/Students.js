@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default (props) => {
-  console.log(props);
+  console.log(props.students)
   return (
     <div>
       You are in Students
@@ -12,7 +12,10 @@ export default (props) => {
         {
           props.students.map(student => (
             <div key={student.id}>
-              <Link to={`/student/${student.id}`}>{student.name}</Link>
+              <form onSubmit={props.handleDelete} value={student.id}>
+                <Link to={`/student/${student.id}`}>{student.name}</Link>
+                <button type='submit'>Delete</button>
+              </form>
             </div>
           ))
         }

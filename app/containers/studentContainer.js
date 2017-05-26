@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Student from '../components/Student';
-import { updateStudent } from '../action-creators/student'
+import { updateStudent, deleteStudent } from '../action-creators/student'
 import store from '../store';
 
 const mapStateToProps = state => {
@@ -14,44 +14,44 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  //put for a student
   return {
     updateStudent (studentId, updateObj) {
       dispatch(updateStudent(studentId, updateObj))
+    },
+    deleteStudent (studentId) {
+      dispatch(deleteStudent(studentId))
     }
   }
 };
-
-/*
- *
- *  Dear Future Rich,
- *
- *    Hope you are doing well. I just wanted to remind me to
- *  set the default value of `campusId` to the first element of
- *  campuses. Or - I could make the initial value a non-functioning
- *  label.
- *
- *    Remember to not be a jerk.
- *
- *  Love,
- *
- *    ~ Me
- *
- */
 
 class StudentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      campusId: 1
+      name: '',
+      email: '',
+      campusId: 1 // This is not ideal
     };
-    console.log(this.props)
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleCampusChange = this.handleCampusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleChange(e) {
-    console.log(e.target.value);
+  handleNameChange(e) {
+    this.setState({
+      name: e.target.value
+    });
+  }
+
+  handleEmailChange(e) {
+    this.setState({
+      email: e.target.value
+    });
+  }
+
+  handleCampusChange(e) {
     this.setState({
       campusId: e.target.value
     });
@@ -59,9 +59,13 @@ class StudentContainer extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props.selectedStudent);
-    console.log(this.state);
-    store.dispatch(updateStudent(this.props.selectedStudent.id, this.state));
+    this.props.updateStudent(this.props.selectedStudent.id, this.state);
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    console.log(this.props.selectedStudent.id)
+    this.props.deleteStudent(this.props.selectedStudent.id);
   }
 
   render() {
@@ -69,7 +73,10 @@ class StudentContainer extends Component {
       <Student
         {...this.props}
         handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
+        handleNameChange={this.handleNameChange}
+        handleEmailChange={this.handleEmailChange}
+        handleCampusChange={this.handleCampusChange}
+        handleDelete={this.handleDelete}
       />
     );
   };
