@@ -2,12 +2,12 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Campus from '../components/Campus';
+import Campuses from '../components/Campuses';
 
 const mapStateToProps = state => {
   return {
-    selectedCampus: state.campus.selectedCampus
+    campuses: state.campus.campuses
   };
 };
 
-export default connect(mapStateToProps)(Campus);
+export default connect(mapStateToProps)(Campuses);

@@ -13,6 +13,7 @@ export default (state = initialCampusState, action) => {
       newState.campuses = action.campuses;
       break;
     case 'RECEIVE_CAMPUS':
+      newState.selectedCampus = action.campus;
       break;
     case 'RECEIVE_CAMPUS_STUDENTS':
       break;

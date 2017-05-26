@@ -13,6 +13,8 @@ export default (state = initialStudentState, action) => {
       newState.students = action.students;
       break;
     case 'RECEIVE_STUDENT':
+      console.log(action.student)
+      newState.selectedStudent = action.student;
       break;
     case 'CREATE_STUDENT':
       break;
