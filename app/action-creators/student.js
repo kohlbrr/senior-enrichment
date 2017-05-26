@@ -16,12 +16,12 @@ export const receiveStudent = student => ({
 export const addStudent = student => ({
   type: 'ADD_STUDENT',
   student
-})
+});
 
 export const removeStudent = studentId => ({
   type: 'REMOVE_STUDENT',
   studentId
-})
+});
 
 export const getStudentById = studentId => {
   return dispatch => {
@@ -31,8 +31,8 @@ export const getStudentById = studentId => {
       dispatch(receiveStudent(res));
     })
     .catch(console.error);
-  }
-}
+  };
+};
 
 export const createStudent = createObj => {
   return dispatch => {
@@ -42,9 +42,9 @@ export const createStudent = createObj => {
       dispatch(addStudent(newStudent));
       browserHistory.push('/students');
     })
-    .catch(console.error)
-  }
-}
+    .catch(console.error);
+  };
+};
 
 export const deleteStudent = studentId => {
   return dispatch => {
@@ -54,8 +54,8 @@ export const deleteStudent = studentId => {
       browserHistory.push('/students'); // This doesn't repopulate props
     })
     .catch(console.error);
-  }
-}
+  };
+};
 
 export const updateStudent = (studentId, updateObj) => {
   return dispatch => {
@@ -72,5 +72,5 @@ export const updateStudent = (studentId, updateObj) => {
       dispatch(receiveStudents(students));
     })
     .catch(console.error);
-  }
-}
+  };
+};

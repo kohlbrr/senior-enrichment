@@ -21,12 +21,12 @@ export const receiveCampusStudents = students => ({
 export const addCampus = campus => ({
   type: 'ADD_CAMPUS',
   campus
-})
+});
 
-export const removeCampus = campusId => {
+export const removeCampus = campusId => ({
   type: 'REMOVE_CAMPUS',
   campusId
-}
+});
 
 export const getCampusById = campusId => {
   return dispatch => {
@@ -38,7 +38,7 @@ export const getCampusById = campusId => {
     })
     .catch(console.error);
   }
-}
+};
 
 export const getCampusStudents = campusId => {
   return dispatch => {
@@ -50,7 +50,7 @@ export const getCampusStudents = campusId => {
     })
     .catch(console.error);
   }
-}
+};
 
 export const createCampus = createObj => {
   return dispatch => {
@@ -60,15 +60,15 @@ export const createCampus = createObj => {
       dispatch(addCampus(campus))
     })
   }
-}
+};
 
 export const deleteCampus = campusId => {
   return dispatch => {
     return axios.delete(`/api/campus/${campusId}`)
     .then(() => {
       dispatch(removeCampus(campusId));
-      browserHistory.push('/campuses')
+      browserHistory.push('/campuses') // Thsi route never gets hit
     })
     .catch(console.error);
   }
-}
+};

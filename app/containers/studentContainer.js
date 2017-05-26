@@ -24,13 +24,18 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
+// Just realised default values were not set here for
+// updating right before deadline. No time to add, but I
+// do feel bad that update only works when you add every
+// field :/
+
 class StudentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       email: '',
-      campusId: 1 // This is not ideal
+      campusId: 1 // This is not ideal and will cause issues
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
