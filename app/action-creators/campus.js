@@ -63,7 +63,6 @@ export const createCampus = createObj => {
 }
 
 export const deleteCampus = campusId => {
-      console.log('7777', campusId)
   return dispatch => {
     return axios.delete(`/api/campus/${campusId}`)
     .then(() => {

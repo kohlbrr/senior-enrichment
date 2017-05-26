@@ -15,7 +15,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     deleteCampus (campusId) {
-      console.log('+++', campusId)
       dispatch(deleteCampus(campusId))
     }
   }
@@ -28,7 +27,6 @@ class CampusContainer extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
     this.props.deleteCampus(this.props.selectedCampus.id)
   }
 
