@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Student from '../components/Student';
 import { updateStudent } from '../action-creators/student'
+import store from '../store';
 
 const mapStateToProps = state => {
   return {
@@ -21,4 +22,40 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-export default connect(mapStateToProps)(Student);
+class StudentContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      campusId: 0
+    };
+    console.log(this.props)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    console.log(e.target.value);
+    this.setState({
+      campusId: e.target.value // This should be a campusId
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.props.selectedStudent);
+    console.log(this.state);
+    store.dispatch(updateStudent(this.props.selectedStudent.id, this.state));
+  }
+
+  render() {
+    return (
+      <Student
+        {...this.props}
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+      />
+    );
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentContainer);

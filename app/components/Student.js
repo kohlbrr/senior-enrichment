@@ -11,11 +11,15 @@ export default (props) => {
         { props.selectedStudent.name }
       </div>
       <div>
-        <form>
+        <form onSubmit={props.handleSubmit}>
           <fieldset>
             <legend>Change Campus</legend>
             <div>
-              <select name='campus' required>
+              <select
+                name='campus'
+                onChange={props.handleChange}
+                required
+              >
                 {
                   props.campuses && props.campuses.map(campus => (
                     <option key={campus.id} value={campus.id}>{campus.name}</option>
