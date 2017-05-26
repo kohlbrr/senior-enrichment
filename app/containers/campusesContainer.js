@@ -45,6 +45,7 @@ class CampusesContainer extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.createCampus)
     this.props.createCampus(this.state)
   }
 

@@ -1,6 +1,7 @@
 'use strict';
 
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 export const receiveCampuses = campuses => ({
   type: 'RECEIVE_CAMPUSES',
@@ -21,6 +22,11 @@ export const addCampus = campus => ({
   type: 'ADD_CAMPUS',
   campus
 })
+
+export const removeCampus = campusId => {
+  type: 'REMOVE_CAMPUS',
+  campusId
+}
 
 export const getCampusById = campusId => {
   return dispatch => {
@@ -53,5 +59,17 @@ export const createCampus = createObj => {
     .then(campus => {
       dispatch(addCampus(campus))
     })
+  }
+}
+
+export const deleteCampus = campusId => {
+      console.log('7777', campusId)
+  return dispatch => {
+    return axios.delete(`/api/campus/${campusId}`)
+    .then(() => {
+      dispatch(removeCampus(campusId));
+      browserHistory.push('/campuses')
+    })
+    .catch(console.error);
   }
 }

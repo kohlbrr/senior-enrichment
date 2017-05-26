@@ -4,7 +4,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default (props) => {
-  console.log(props.students)
   return (
     <div>
       You are in Students

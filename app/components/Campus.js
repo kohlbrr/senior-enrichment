@@ -7,7 +7,14 @@ export default (props) => {
   console.log(props)
   return (
     <div>
-      { props.selectedCampus.name }
+      <h2>{ props.selectedCampus.name }</h2>
+      <form onSubmit={props.handleSubmit}>
+        <fieldset>
+          <div>
+            <button type='submit'>Delete {props.selectedCampus.name}</button>
+          </div>
+        </fieldset>
+      </form>
         {
           props.selectedCampusStudents.map(student => (
             <div key={student.id}>

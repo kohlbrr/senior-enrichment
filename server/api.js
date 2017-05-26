@@ -48,6 +48,7 @@ api.get('/campus/:id/students', (req, res, next) => { // Get all students from a
 })
 
 api.post('/campus', (req, res, next) => { // Create campus
+  console.log(req.body)
   Campus.create(req.body)
   .then(campus => {
     res.status(201).send(campus);
@@ -56,7 +57,6 @@ api.post('/campus', (req, res, next) => { // Create campus
 })
 
 api.put('/campus/:id', (req, res, next) => { // Update campus info
-  console.log(req.params)
   Campus.findOne({
     where: {
       id: req.params.id
@@ -76,6 +76,7 @@ api.put('/campus/:id', (req, res, next) => { // Update campus info
 })
 
 api.delete('/campus/:id', (req, res, next) => { // Delete campus and associated students
+  console.log('===', req.params.id)
   Campus.destroy({
     where: {
       id: req.params.id
@@ -108,14 +109,12 @@ api.get('/student/:id', (req, res, next) => { // Get student
 })
 
 api.post('/student', (req, res, next) => { // Create student
-  console.log('HI', req.body)
   Campus.findOne({
     where: {
       id: +req.body._campusId
     }
   })
   .then(campus => {
-    console.log('~~~~', campus)
     if(!campus) res.status(404).send('Campus not found');
     else return campus.createStudent(req.body)
   })

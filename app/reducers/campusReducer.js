@@ -22,6 +22,11 @@ export default (state = initialCampusState, action) => {
     case 'ADD_CAMPUS':
       newState.campuses.push(action.campus);
       break;
+    case 'REMOVE_CAMPUS':
+      newState.campuses = state.campuses.filter(campus => {
+        return campus.id !== action.campusId
+      })
+      break;
     default:
       return state;
   }

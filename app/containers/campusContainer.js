@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Campus from '../components/Campus';
+import { deleteCampus } from '../action-creators/campus'
 
 const mapStateToProps = state => {
   return {
@@ -11,4 +12,34 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Campus);
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteCampus (campusId) {
+      console.log('+++', campusId)
+      dispatch(deleteCampus(campusId))
+    }
+  }
+}
+
+class CampusContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    this.props.deleteCampus(this.props.selectedCampus.id)
+  }
+
+  render() {
+    return (
+      <Campus
+        {...this.props}
+        handleSubmit={this.handleSubmit}
+      />
+    )
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CampusContainer);
