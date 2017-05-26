@@ -6,10 +6,9 @@ import { Link } from 'react-router';
 export default (props) => {
   return (
     <div>
-      You are in Campuses
+      <h3>Add A Student</h3>
       <form onSubmit={props.handleSubmit}>
         <fieldset>
-          <legend>Add a Campus</legend>
           <h4>Name</h4>
           <input
             name='name'
@@ -17,24 +16,31 @@ export default (props) => {
             onChange={props.handleNameChange}
             required
           />
-          <h4>Image URL</h4>
+          <h4>Email</h4>
           <input
-            name='imageUrl'
+            name='email'
             type='text'
-            onChange={props.handleImageChange}
+            onChange={props.handleEmailChange}
+            required
           />
+          <h4>Campus</h4>
+          <select
+            name='campus'
+            selected='selected'
+            onChange={props.handleCampusChange}
+            required
+          >
+          {
+            props.campuses && props.campuses.map(campus => (
+              <option key={campus.id} value={campus.id}>{campus.name}</option>
+            ))
+          }
+          </select>
           <div>
             <button type='submit'>Submit</button>
           </div>
         </fieldset>
       </form>
-        {
-          props.campuses.map(campus => (
-            <div key={campus.id}>
-              <Link to={`/campus/${campus.id}`}>{campus.name}</Link>
-            </div>
-          ))
-        }
     </div>
   );
 }

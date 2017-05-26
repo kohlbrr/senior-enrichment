@@ -26,9 +26,8 @@ class StudentsContainer extends Component {
   }
 
   handleDelete(e) {
-    e.preventDefault();
-    console.log(e.target)
-    this.props.deleteStudent(e.target.value);
+    //e.preventDefault(); // Commented to force updating
+    this.props.deleteStudent(e.target.delete.value); // Not updating store
   }
 
   render() {

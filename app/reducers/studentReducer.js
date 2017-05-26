@@ -16,6 +16,9 @@ export default (state = initialStudentState, action) => {
       newState.selectedStudent = action.student;
       break;
     case 'ADD_STUDENT':
+      console.log(action.student);
+      newState.students.push(action.student);
+      console.log(newState.students);
       break;
     case 'REMOVE_STUDENT':
       newState.students = state.students.filter(student => {

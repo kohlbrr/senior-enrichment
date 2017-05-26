@@ -15,7 +15,7 @@ export default (props) => {
       <div>
         <form onSubmit={props.handleSubmit}>
           <fieldset>
-            <legend>Edit User</legend>
+            <legend>Edit Student</legend>
              <div>
               <h4>New Name</h4>
             </div>
@@ -61,9 +61,12 @@ export default (props) => {
           </fieldset>
         </form>
         <form onSubmit={props.handleDelete}>
-          <div>
-            <button type='submit'>Delete {props.selectedStudent.name}</button>
-          </div>
+          <fieldset>
+            <legend>Delete Student</legend>
+            <div>
+              <button type='submit'>Delete {props.selectedStudent.name}</button>
+            </div>
+          </fieldset>
         </form>
       </div>
     </div>

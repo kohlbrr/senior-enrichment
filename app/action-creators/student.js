@@ -13,6 +13,11 @@ export const receiveStudent = student => ({
   student
 });
 
+export const addStudent = student => ({
+  type: 'ADD_STUDENT',
+  student
+})
+
 export const removeStudent = studentId => ({
   type: 'REMOVE_STUDENT',
   studentId
@@ -29,12 +34,24 @@ export const getStudentById = studentId => {
   }
 }
 
+export const createStudent = createObj => {
+  return dispatch => {
+    return axios.post('/api/student', createObj)
+    .then(res => res.data)
+    .then(newStudent => {
+      dispatch(addStudent(student));
+      browserHistory.push('/students');
+    })
+    .catch(console.error)
+  }
+}
+
 export const deleteStudent = studentId => {
   return dispatch => {
     return axios.delete(`/api/student/${studentId}`)
     .then(() => {
-      dispatch(removeStudent(studentId))
-      browserHistory.push('/students') // This doesn't repopulate props
+      dispatch(removeStudent(studentId));
+      browserHistory.push('/students'); // This doesn't repopulate props
     })
     .catch(console.error);
   }

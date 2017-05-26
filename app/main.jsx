@@ -12,6 +12,7 @@ import CampusesContainer from './containers/campusesContainer';
 import StudentsContainer from './containers/studentsContainer';
 import CampusContainer from './containers/campusContainer';
 import StudentContainer from './containers/studentContainer';
+import AddStudentContainer from './containers/addStudentContainer';
 
 import { receiveCampuses, getCampusById, getCampusStudents } from './action-creators/campus';
 import { receiveStudents, getStudentById } from './action-creators/student';
@@ -36,15 +37,6 @@ const onCampusEnter = (nextRouterState) => {
   store.dispatch(getCampusStudents(selectedCampus));
 };
 
-const onStudentsEnter = (nextRouterState) => {
-  axios.get('/api/students')
-  .then(res => res.data)
-  .then(students => {
-    store.dispatch(receiveStudents());
-  })
-  .catch(console.error);
-};
-
 const onStudentEnter = (nextRouterState) => {
   const selectedStudent = nextRouterState.params.id;
   store.dispatch(getStudentById(selectedStudent));
@@ -58,6 +50,7 @@ const Routes = () => {
           <Route path='/campuses' component={CampusesContainer}/>
           <Route path='/campus/:id' component={CampusContainer} onEnter={onCampusEnter}/>
           <Route path='/students' component={StudentsContainer}/>
+          <Route path='/student/add' component={AddStudentContainer}/>
           <Route path='/student/:id' component={StudentContainer} onEnter={onStudentEnter}/>
         </Route>
       </Router>

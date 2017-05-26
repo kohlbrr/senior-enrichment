@@ -8,13 +8,17 @@ export default (props) => {
   return (
     <div>
       You are in Students
+      <fieldset>
+        <legend>Add a Student</legend>
+        <Link to='/student/add'>+ Student</Link>
+      </fieldset>
       <section>
         {
           props.students.map(student => (
             <div key={student.id}>
-              <form onSubmit={props.handleDelete} value={student.id}>
+              <form onSubmit={props.handleDelete}>
                 <Link to={`/student/${student.id}`}>{student.name}</Link>
-                <button type='submit'>Delete</button>
+                <button name='delete' type='submit' value={student.id}>Delete</button>
               </form>
             </div>
           ))

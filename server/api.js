@@ -108,6 +108,7 @@ api.get('/student/:id', (req, res, next) => { // Get student
 })
 
 api.post('/student', (req, res, next) => { // Create student
+  console.log(req.body)
   Campus.findOne({
     where: {
       id: req.body._campus

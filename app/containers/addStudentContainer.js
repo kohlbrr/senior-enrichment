@@ -2,26 +2,21 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Student from '../components/Student';
-import { updateStudent, deleteStudent } from '../action-creators/student'
-import store from '../store';
+import AddStudent from '../components/AddStudent';
+import { createStudent } from '../action-creators/student'
 
 const mapStateToProps = state => {
   return {
-    selectedStudent: state.student.selectedStudent,
     campuses: state.campus.campuses
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateStudent (studentId, updateObj) {
-      dispatch(updateStudent(studentId, updateObj))
-    },
-    deleteStudent (studentId) {
-      dispatch(deleteStudent(studentId))
+    createStudent (createObj) {
+      dispatch(createStudent(createObj))
     }
-  }
+  };
 };
 
 class StudentContainer extends Component {
@@ -30,13 +25,12 @@ class StudentContainer extends Component {
     this.state = {
       name: '',
       email: '',
-      campusId: 1 // This is not ideal
+      _campusId: 1
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleCampusChange = this.handleCampusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleNameChange(e) {
@@ -59,23 +53,17 @@ class StudentContainer extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.updateStudent(this.props.selectedStudent.id, this.state);
-  }
-
-  handleDelete(e) {
-    e.preventDefault();
-    this.props.deleteStudent(this.props.selectedStudent.id);
+    this.props.createStudent(this.state);
   }
 
   render() {
     return (
-      <Student
+      <AddStudent
         {...this.props}
-        handleSubmit={this.handleSubmit}
         handleNameChange={this.handleNameChange}
         handleEmailChange={this.handleEmailChange}
         handleCampusChange={this.handleCampusChange}
-        handleDelete={this.handleDelete}
+        handleSubmit={this.handleSubmit}
       />
     );
   };
