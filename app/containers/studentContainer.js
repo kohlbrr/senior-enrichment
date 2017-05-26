@@ -22,11 +22,28 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
+/*
+ *
+ *  Dear Future Rich,
+ *
+ *    Hope you are doing well. I just wanted to remind me to
+ *  set the default value of `campusId` to the first element of
+ *  campuses. Or - I could make the initial value a non-functioning
+ *  label.
+ *
+ *    Remember to not be a jerk.
+ *
+ *  Love,
+ *
+ *    ~ Me
+ *
+ */
+
 class StudentContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      campusId: 0
+      campusId: 1
     };
     console.log(this.props)
     this.handleChange = this.handleChange.bind(this);
@@ -36,7 +53,7 @@ class StudentContainer extends Component {
   handleChange(e) {
     console.log(e.target.value);
     this.setState({
-      campusId: e.target.value // This should be a campusId
+      campusId: e.target.value
     });
   }
 
