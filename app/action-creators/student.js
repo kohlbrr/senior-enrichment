@@ -39,7 +39,7 @@ export const createStudent = createObj => {
     return axios.post('/api/student', createObj)
     .then(res => res.data)
     .then(newStudent => {
-      dispatch(addStudent(student));
+      dispatch(addStudent(newStudent));
       browserHistory.push('/students');
     })
     .catch(console.error)

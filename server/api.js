@@ -108,13 +108,14 @@ api.get('/student/:id', (req, res, next) => { // Get student
 })
 
 api.post('/student', (req, res, next) => { // Create student
-  console.log(req.body)
+  console.log('HI', req.body)
   Campus.findOne({
     where: {
-      id: req.body._campus
+      id: +req.body._campusId
     }
   })
   .then(campus => {
+    console.log('~~~~', campus)
     if(!campus) res.status(404).send('Campus not found');
     else return campus.createStudent(req.body)
   })

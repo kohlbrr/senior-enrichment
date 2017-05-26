@@ -17,6 +17,11 @@ export const receiveCampusStudents = students => ({
   students
 });
 
+export const addCampus = campus => ({
+  type: 'ADD_CAMPUS',
+  campus
+})
+
 export const getCampusById = campusId => {
   return dispatch => {
     return axios.get(`/api/campus/${campusId}`)
@@ -38,5 +43,15 @@ export const getCampusStudents = campusId => {
       dispatch(receiveCampusStudents(res));
     })
     .catch(console.error);
+  }
+}
+
+export const createCampus = createObj => {
+  return dispatch => {
+    return axios.post('/api/campus')
+    .then(res => res.data)
+    .then(campus => {
+      dispatch(addCampus(campus))
+    })
   }
 }

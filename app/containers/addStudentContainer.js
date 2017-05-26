@@ -47,7 +47,7 @@ class StudentContainer extends Component {
 
   handleCampusChange(e) {
     this.setState({
-      campusId: e.target.value
+      _campusId: e.target.value
     });
   }
 

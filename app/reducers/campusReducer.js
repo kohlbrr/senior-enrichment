@@ -19,11 +19,8 @@ export default (state = initialCampusState, action) => {
     case 'RECEIVE_CAMPUS_STUDENTS':
       newState.selectedCampusStudents = action.students;
       break;
-    case 'CREATE_CAMPUS':
-      break;
-    case 'UPDATE_CAMPUS':
-      break;
-    case 'DELETE_CAMPUS':
+    case 'ADD_CAMPUS':
+      newState.campuses.push(action.campus);
       break;
     default:
       return state;

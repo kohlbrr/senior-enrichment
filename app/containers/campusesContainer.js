@@ -3,12 +3,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Campuses from '../components/Campuses';
+import { createCampus } from '../action-creators/campus'
 
 const mapStateToProps = state => {
   return {
     campuses: state.campus.campuses
   };
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createCampus (createObj) {
+      dispatch(createCampus(createObj))
+    }
+  }
+}
 
 class CampusesContainer extends Component {
   constructor(props) {
@@ -23,15 +32,20 @@ class CampusesContainer extends Component {
   }
 
   handleNameChange(e) {
-  
+    this.setState({
+      name: e.target.value
+    })
   }
 
   handleImageChange(e) {
-  
+    this.setState({
+      image: e.target.value
+    })
   }
 
   handleSubmit(e) {
-  
+    e.preventDefault();
+    this.props.createCampus(this.state)
   }
 
   render() {
@@ -46,4 +60,4 @@ class CampusesContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps)(CampusesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CampusesContainer);
