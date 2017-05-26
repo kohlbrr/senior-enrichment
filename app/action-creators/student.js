@@ -23,3 +23,15 @@ export const getStudentById = studentId => {
     .catch(console.error);
   }
 }
+
+export const updateStudent = (studentId, updateObj) => {
+  return dispatch => {
+    return axios.put(`/api/student/${studentId}`, updateObj)
+    .then(res => res.data)
+    .then(res => {
+      console.log(res)
+      dispatch(receiveStudent(res));
+    })
+    .catch(console.error);
+  }
+}

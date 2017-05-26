@@ -38,7 +38,7 @@ const onCampusEnter = (nextRouterState) => {
 
 const onStudentEnter = (nextRouterState) => {
   const selectedStudent = nextRouterState.params.id;
-  return store.dispatch(getStudentById(selectedStudent));
+  store.dispatch(getStudentById(selectedStudent));
 };
 
 const Routes = () => {
