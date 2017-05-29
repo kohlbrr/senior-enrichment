@@ -54,7 +54,7 @@ export const getCampusStudents = campusId => {
 
 export const createCampus = createObj => {
   return dispatch => {
-    return axios.post('/api/campus')
+    return axios.post('/api/campus', createObj)
     .then(res => res.data)
     .then(campus => {
       dispatch(addCampus(campus))

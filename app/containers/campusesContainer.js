@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => {
   return {
     createCampus (createObj) {
       dispatch(createCampus(createObj))
+      .catch(console.error);
     }
   }
 }
@@ -45,8 +46,7 @@ class CampusesContainer extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.createCampus)
-    this.props.createCampus(this.state)
+    this.props.createCampus(this.state);
   }
 
   render() {
